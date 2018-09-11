@@ -13,6 +13,9 @@ var peticionesDeApi = require('./routes/apiPeticiones');
 var proveedores = require('./routes/peticionesProveedor');
 var clientes  = require('./routes/peticionesClientes');
 var sims = require('./routes/peticionesSim');
+var tipopago = require('./routes/peticionesTipoPago');
+var tiposervicio = require('./routes/peticionesTipoServicio');
+var tipomora = require('./routes/peticionesTipoMora');
 var app = express();
 
 // view engine setup
@@ -32,6 +35,9 @@ app.use('/usuario/', peticionesDeApi);
 app.use('/proveedores', proveedores);
 app.use('/clientes/', clientes);
 app.use('/sims', sims);
+app.use('/tipopago', tipopago);
+app.use('/tiposervicio', tiposervicio);
+app.use('/tipomora', tipomora);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

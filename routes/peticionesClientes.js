@@ -34,5 +34,39 @@ router.get('/:id', function (req, res, next) {
   }//fin del if
 });//fin del get
 
+/* POST todo. */
+router.post('/', function(req, res, next) {
+  var {
+        nombre,direccion,correo, dirfact, nit,telefono,estado,tipopago,tiposervicio,fecha,
+        tipomora,saldo,anticipo
+        } = req.body;
+
+     model.cliente.create({
+             nombre: nombre,
+             direccion_fiscal: direccion,
+             correo: correo,
+             direccion_facturacion: dirfact,
+             nit: nit,
+             telefono: telefono,
+             estado: estado,
+             tipo_pago: tipopago,
+             tipo_servicio: tiposervicio,
+             fecha_ingreso: fecha,
+             tipo_mora:tipomora,
+             saldo_Q: saldo,
+             anticipo:anticipo
+         })
+         .then(todo => res.status(201).json({
+             error: false,
+             data: todo,
+             message: 'Registros ingresados a tabla cliente'
+         }))
+         .catch(error => res.json({
+             error: true,
+             data: [],
+             error: error
+         }));
+});
+
 
 module.exports = router;
