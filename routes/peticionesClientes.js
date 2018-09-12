@@ -59,7 +59,7 @@ router.post('/', function(req, res, next) {
          .then(todo => res.status(201).json({
              error: false,
              data: todo,
-             message: 'Registros ingresados a tabla cliente'
+             message: 'INFORMACION GUARDADA CORRECTAMENTE'
          }))
          .catch(error => res.json({
              error: true,
@@ -68,5 +68,38 @@ router.post('/', function(req, res, next) {
          }));
 });
 
+
+router.put('/:id', function (req, res, next) {
+    const id = req.params.id;
+    const {nombre,direccion,correo, dirfact, nit,telefono,estado,tipopago,tiposervicio,fecha,
+        tipomora,saldo,anticipo} = req.body;
+    model.cliente.update({
+             nombre: nombre,
+             direccion_fiscal: direccion,
+             correo: correo,
+             direccion_facturacion: dirfact,
+             nit: nit,
+             telefono: telefono,
+             estado: estado,
+             tipo_pago: tipopago,
+             tipo_servicio: tiposervicio,
+             fecha_ingreso: fecha,
+             tipo_mora:tipomora,
+             saldo_Q: saldo,
+             anticipo:anticipo
+        }, {
+            where: {
+                id: id
+            }
+        })
+        .then(todo => res.status(201).json({
+            error: false,
+            message: 'INFORMACION ACTUALIZADA CORRECTAMENTE'
+        }))
+        .catch(error => res.json({
+            error: true,
+            error: error
+        }));
+});
 
 module.exports = router;
