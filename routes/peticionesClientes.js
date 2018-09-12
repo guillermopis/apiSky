@@ -34,6 +34,8 @@ router.get('/:id', function (req, res, next) {
   }//fin del if
 });//fin del get
 
+
+
 /* POST todo. */
 router.post('/', function(req, res, next) {
   var {
