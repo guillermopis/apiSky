@@ -3,7 +3,8 @@
     "username": "sa",
     "password": "maruntes",
     "database": "SkyrangerDB",
-    "host": "192.168.43.29",
+    "host": "basecrud.cmib4k2ppmwh.ca-central-1.rds.amazonaws.com",
+    "port": "1433",
     "dialect": "mssql"
   },
 
