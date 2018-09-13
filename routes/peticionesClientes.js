@@ -61,7 +61,7 @@ router.post('/', function(req, res, next) {
          .then(todo => res.status(201).json({
              error: false,
              data: todo,
-             message: 'INFORMACION GUARDADA CORRECTAMENTE'
+             mensaje: 'INFORMACION GUARDADA CORRECTAMENTE'
          }))
          .catch(error => res.json({
              error: true,
@@ -96,7 +96,7 @@ router.put('/:id', function (req, res, next) {
         })
         .then(todo => res.status(201).json({
             error: false,
-            message: 'INFORMACION ACTUALIZADA CORRECTAMENTE'
+            mensaje: 'INFORMACION ACTUALIZADA CORRECTAMENTE'
         }))
         .catch(error => res.json({
             error: true,
