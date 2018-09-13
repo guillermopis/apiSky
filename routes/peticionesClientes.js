@@ -6,9 +6,14 @@ var model = require('../models/index');
 
 /* GET listing. */
 router.get('/:id', function (req, res, next) {
-  const todo_id = req.params.id;
-  if(todo_id == 'null'){
-    model.cliente.findAll({})
+  const todo_id = req.params.id;//capturo lo que viene en id
+  var paginacion = JSON.parse(todo_id);//convierto a json lo que viene en id
+  console.log("valor de texto= "+paginacion.texto);
+  if(paginacion.id == 'null'){
+    model.cliente.findAll({ 
+      offset: parseInt(paginacion.ab), limit: parseInt(paginacion.b),
+      where:{nombre: {$like: ("%"+paginacion.texto+"%")}}
+    })//fin de findAll
     .then(apiPeticiones => res.json({
       error: false,
       data: apiPeticiones
