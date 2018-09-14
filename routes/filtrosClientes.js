@@ -4,6 +4,22 @@ var model = require('../models/index');
 var Sequelize= require('Sequelize');
 
 //get para filtro por nombre
+router.get('/', function (req, res, next) {
+  model.cliente.findAll({ attributes: ['id']})
+        .then(todos => res.json({
+            error: false,
+            data: todos
+        }))
+        .catch(error => res.json({
+            error: true,
+            data: [],
+            error: error
+        }));
+});
+
+
+
+
 router.post('/', function (req, res, next) {
   var texto ="%"+ req.body.texto+"%";
   console.log(texto);

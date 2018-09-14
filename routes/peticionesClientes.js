@@ -11,7 +11,7 @@ router.get('/:id', function (req, res, next) {
   console.log("valor de texto= "+paginacion.texto);
   if(paginacion.id == 'null'){
     model.cliente.findAll({ 
-      offset: parseInt(paginacion.ab), limit: parseInt(paginacion.b),
+      offset: parseInt(paginacion.a), limit: parseInt(paginacion.b),
       where:{nombre: {$like: ("%"+paginacion.texto+"%")}}
     })//fin de findAll
     .then(apiPeticiones => res.json({
