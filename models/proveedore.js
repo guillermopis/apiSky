@@ -8,7 +8,13 @@ module.exports = (sequelize, DataTypes) => {
       nit: DataTypes.STRING,
       direccion: DataTypes.STRING,
       telefono: DataTypes.STRING,
-      estado: DataTypes.STRING
+      extension: DataTypes.INTEGER,
+      correo_empresa: DataTypes.STRING,
+      estado: DataTypes.STRING,
+      contacto: DataTypes.STRING,
+      fecha_relacion: DataTypes.STRING,
+      correo_contacto:DataTypes.STRING
+      
   }, {
     timestamps: false,
   });

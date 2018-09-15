@@ -50,7 +50,7 @@ router.post('/', function(req, res, next) {
          .then(todo => res.status(201).json({
              error: false,
              data: todo,
-             message: 'Registros ingresados a tabla proveedores'
+             message: 'Registro ingresado en la tabla sim'
          }))
          .catch(error => res.json({
              error: true,
@@ -58,36 +58,4 @@ router.post('/', function(req, res, next) {
              error: error
          }));
 });
-/*
-//metodo actualizar
-router.put('/:id', function (req, res, next) {
-    const todos = req.params.id;
-    const {nombre,nit,direccion,telefono,extension,correo_empresa,estado,contacto,fecha_relacion,correo_contacto} = req.body;
-    model.proveedore.update({
-            nombre: nombre,
-            nit: nit,
-            direccion: direccion,
-            telefono: telefono,
-            extension: extension,
-            correo_empresa: correo_empresa,
-            estado: estado,
-            contacto: contacto,
-            fecha_relacion: fecha_relacion ,
-            correo_contacto: correo_contacto
-        }, {
-            where: {
-                id: todos
-            }
-        })
-        .then(todo => res.status(201).json({
-            error: false,
-            message: 'INFORMACION ACTUALIZADA'
-        }))
-        .catch(error => res.json({
-            error: true,
-            error: error
-        }));
-});
-*/
-
 module.exports = router;

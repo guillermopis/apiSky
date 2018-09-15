@@ -4,18 +4,36 @@ var model = require('../models/index');
 //espacio para las peticionesDeApi
 
 /* mostramos los datos que tenga el proveedor */
-router.get('/', function (req, res, next) {
-  model.proveedore.findAll({})
-        .then(todos => res.json({
-            error: false,
-            data: todos
-        }))
-        .catch(error => res.json({
-            error: true,
-            data: [],
-            error: error
-        }));
-});
+router.get('/:id', function (req, res, next) {
+  const todo_id = req.params.id;
+  if(todo_id == 'null'){
+    model.proveedore.findAll({})
+    .then(apiPeticiones => res.json({
+      error: false,
+      data: apiPeticiones
+    }))
+    .catch(error => res.json({
+        error: true,
+        data: [],
+        error: error
+    }));
+  }else{
+      model.proveedore.findAll({ where: {
+          id: todo_id
+      }})
+      .then(apiPeticiones => res.json({
+        error: false,
+          data: apiPeticiones
+      }))
+      .catch(error => res.json({
+          error: true,
+          data: [],
+          error: error
+      }));
+  }//fin del if
+});//fin del get
+
+
 /* POST todo. */
 router.post('/', function(req, res, next) {
   var {
@@ -23,15 +41,26 @@ router.post('/', function(req, res, next) {
          nit,
          direccion,
          telefono,
-         estado   
-           } = req.body;
+         extension,
+         correo_empresa,
+         estado,
+         contacto,
+         fecha_relacion,
+         correo_contacto   
+     } = req.body;
 
      model.proveedore.create({
-             nombre: nombre,
-             nit: nit,
-             direccion: direccion,
-             telefono: telefono,
-             estado: estado
+            
+            nombre: nombre,
+            nit: nit,
+            direccion: direccion,
+            telefono: telefono,
+            extension: extension,
+            correo_empresa: correo_empresa,
+            estado: estado,
+            contacto: contacto,
+            fecha_relacion: fecha_relacion ,
+            correo_contacto: correo_contacto
          })
          .then(todo => res.status(201).json({
              error: false,
@@ -48,13 +77,18 @@ router.post('/', function(req, res, next) {
 //metodo actualizar
 router.put('/:id', function (req, res, next) {
     const todos = req.params.id;
-    const {nombre,nit,direccion, telefono,estado} = req.body;
+    const {nombre,nit,direccion,telefono,extension,correo_empresa,estado,contacto,fecha_relacion,correo_contacto} = req.body;
     model.proveedore.update({
             nombre: nombre,
             nit: nit,
             direccion: direccion,
             telefono: telefono,
-            estado: estado
+            extension: extension,
+            correo_empresa: correo_empresa,
+            estado: estado,
+            contacto: contacto,
+            fecha_relacion: fecha_relacion ,
+            correo_contacto: correo_contacto
         }, {
             where: {
                 id: todos
@@ -63,27 +97,6 @@ router.put('/:id', function (req, res, next) {
         .then(todo => res.status(201).json({
             error: false,
             message: 'INFORMACION ACTUALIZADA'
-        }))
-        .catch(error => res.json({
-            error: true,
-            error: error
-        }));
-});
-
-//metodo actualizar solo para estado 
-router.put('/:id', function (req, res, next) {
-    const todos = req.params.id;
-    const {estado} = req.body;
-    model.proveedore.update({
-            estado: estado
-        }, {
-            where: {
-                estado: todos
-            }
-        })
-        .then(todo => res.status(201).json({
-            error: false,
-            message: 'Estado ACTUALIZADO'
         }))
         .catch(error => res.json({
             error: true,
