@@ -11,6 +11,7 @@ router.get('/:id', function (req, res, next) {
 	var paginacion = JSON.parse(id);
     model.vehiculo.findAll({
     	//attributes:['placa','marca'],//->si quiero solo unos atributos
+    	offset: parseInt(paginacion.a), limit: parseInt(paginacion.b),
     	where:{placa:{$like:("%"+paginacion.placa+"%")}},//filtra por placa
     	include:[{ //le digo a sequelize que incluya el modelo cliente y que traiga id, nombre
     		model: model.cliente,
