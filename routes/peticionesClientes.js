@@ -76,9 +76,9 @@ router.post('/', function(req, res, next) {
 });
 
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 module.exports = router;
-=======
+//=======
 router.put('/:id', function (req, res, next) {
     const id = req.params.id;
     const {nombre,direccion,correo, dirfact, nit,telefono,estado,tipopago,tiposervicio,fecha,
@@ -113,4 +113,4 @@ router.put('/:id', function (req, res, next) {
 });
 
 module.exports = router;
->>>>>>> 4e934b63c352e89271df659f5fff00ef2b457564
+//>>>>>>> 4e934b63c352e89271df659f5fff00ef2b457564

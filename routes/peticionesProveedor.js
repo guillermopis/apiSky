@@ -77,7 +77,8 @@ router.post('/', function(req, res, next) {
 //metodo actualizar
 router.put('/:id', function (req, res, next) {
     const todos = req.params.id;
-    const {nombre,nit,direccion,telefono,extension,correo_empresa,estado,contacto,fecha_relacion,correo_contacto} = req.body;
+    const {nombre,nit,direccion,telefono,
+      extension,correo_empresa,estado,contacto,fecha_relacion,correo_contacto} = req.body;
     model.proveedore.update({
             nombre: nombre,
             nit: nit,

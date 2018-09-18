@@ -1,14 +1,9 @@
 {
   "development": {
     "username": "sa",
-    "password": "conexion1",
+    "password": "maruntes",
     "database": "SkyrangerDB",
-<<<<<<< HEAD
-    "host": "192.168.43.220",
-=======
     "host": "basecrud.cmib4k2ppmwh.ca-central-1.rds.amazonaws.com",
-    "port": "1433",
->>>>>>> 4e934b63c352e89271df659f5fff00ef2b457564
     "dialect": "mssql"
   },
 
