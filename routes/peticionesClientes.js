@@ -111,9 +111,7 @@ router.put('/:id', function (req, res, next) {
         }));
 });
 
-<<<<<<< HEAD
-module.exports = router;
-=======
+
 module.exports = router;
 
->>>>>>> ba377bae374381bffa61e72f86d4035e7cd2f16c
+

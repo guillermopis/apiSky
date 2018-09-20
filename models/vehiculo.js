@@ -7,6 +7,8 @@ module.exports = (sequelize, DataTypes) => {
     color: DataTypes.STRING,
     tipo: DataTypes.STRING,
     placa: DataTypes.STRING,
+    motor: DataTypes.STRING,
+    chasis: DataTypes.STRING,
     estado: DataTypes.STRING,
     precio_servicio: DataTypes.FLOAT,
     fecha_instalacion: DataTypes.DATE,
