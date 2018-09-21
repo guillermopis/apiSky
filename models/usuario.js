@@ -2,7 +2,10 @@
 module.exports = (sequelize, DataTypes) => {
   var usuario = sequelize.define('usuario', {
     usuario: DataTypes.STRING,
-    contraseña: DataTypes.STRING
+    contraseña: DataTypes.STRING,
+    puesto: DataTypes.STRING,
+    estado: DataTypes.STRING,
+    rol: DataTypes.INTEGER
   }, {
     timestamps: false,
   });
