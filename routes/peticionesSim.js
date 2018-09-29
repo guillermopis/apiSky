@@ -4,19 +4,43 @@ var model = require('../models/index');
 //espacio para las peticionesDeApi
 
 /* mostramos los datos que tenga el proveedor */
-router.get('/', function (req, res, next) {
-  model.sim.findAll({}) 
-        //el try-catch de los errores
-        .then(todos => res.json({
-            error: false,
-            data: todos
-        }))
-        .catch(error => res.json({
-            error: true,
-            data: [],
-            error: error
-        }));
-});
+router.get('/:id', function (req, res, next) {
+  console.log(req);
+  const todo_id = req.params.id;//capturo lo que viene en id
+  var paginacion = JSON.parse(todo_id);//convierto a json lo que viene en id
+  console.log("valor de texto= "+paginacion.texto);
+  if(paginacion.id == 'null'){
+    model.sim.findAll({ //offset: 0 , limit:5
+      offset: parseInt(paginacion.a), limit: parseInt(paginacion.b),
+      //vamos a filtrar por el nombre de la compania
+      where:{compania_telefonica: {$like: ("%"+paginacion.compania_telefonica+"%")}}
+
+    })//fin de findAll
+    .then(apiPeticiones => res.json({
+      error: false,
+      data: apiPeticiones
+    }))
+    .catch(error => res.json({
+        error: true,
+        data: [],
+        error: error
+    }));
+  }else{
+      model.sim.findAll({ where: {
+          id: todo_id
+      }})
+      .then(apiPeticiones => res.json({
+        error: false,
+          data: apiPeticiones
+      }))
+      .catch(error => res.json({
+          error: true,
+          data: [],
+          error: error
+      }));
+  }//fin del if
+});//fin del get
+
 
 /* POST todo. */
 router.post('/', function(req, res, next) {
@@ -45,7 +69,8 @@ router.post('/', function(req, res, next) {
             numero_telefono: numero_telefono,
             iccid: iccid,
             apn: apn,
-            id_lote: id_lote
+            id_lote: id_lote,
+            estado: estado
          })
          .then(todo => res.status(201).json({
              error: false,
@@ -57,5 +82,36 @@ router.post('/', function(req, res, next) {
              data: [],
              error: error
          }));
+});
+//metodo actualizar
+router.put('/:id', function (req, res, next) {
+    const todos = req.params.id;
+    const {id_marca,compania_telefonica,plan_de_datos,fecha_vencimiento_plan,
+        fecha_inicio_plan,precio_del_plan,numero_telefono,iccid,apn,id_lote,estado} = req.body;
+    model.sim.update({
+             id_marca: id_marca,
+            compania_telefonica:compania_telefonica,
+            plan_de_datos:plan_de_datos,
+            fecha_vencimiento_plan: fecha_vencimiento_plan,
+            fecha_inicio_plan: fecha_inicio_plan,
+            precio_del_plan: precio_del_plan,
+            numero_telefono: numero_telefono,
+            iccid: iccid,
+            apn: apn,
+            id_lote: id_lote,
+            estado:estado
+        }, {
+            where: {
+                id: todos
+            }
+        })
+        .then(todo => res.status(201).json({
+            error: false,
+            message: 'INFORMACION ACTUALIZADA'
+        }))
+        .catch(error => res.json({
+            error: true,
+            error: error
+        }));
 });
 module.exports = router;

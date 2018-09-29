@@ -18,6 +18,7 @@ var tipopago = require('./routes/peticionesTipoPago');
 var tiposervicio = require('./routes/peticionesTipoServicio');
 var tipomora = require('./routes/peticionesTipoMora');
 var vehiculos = require('./routes/peticionesVehiculos');
+//var pruebas = requerie('.test/servidor')
 var app = express();
 
 // view engine setup
