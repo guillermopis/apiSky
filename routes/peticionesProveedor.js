@@ -1,13 +1,25 @@
+//"password": "maruntes",
+    //"host": "basecrud.cmib4k2ppmwh.ca-central-1.rds.amazonaws.com",
 var express = require('express');
 var router = express.Router();
 var model = require('../models/index');
+//loggerHTTP = require('morgan');
+//var fs = require('fs'); var util = require('util');
+//app.use(loggerHTTP({stream: log_file}));
+//app.use(loggerHTTP('dev'));
 //espacio para las peticionesDeApi
 
 /* mostramos los datos que tenga el proveedor */
 router.get('/:id', function (req, res, next) {
-  const todo_id = req.params.id;
-  if(todo_id == 'null'){
-    model.proveedore.findAll({})
+  const todo_id = req.params.id;//capturo lo que viene en id
+  var paginacion = JSON.parse(todo_id);//convierto a json lo que viene en id
+  console.log("valor de texto= "+paginacion.texto);
+  if(paginacion.id == 'null'){
+    model.proveedore.findAll({ //offset: 0 , limit:5
+      offset: parseInt(paginacion.a), limit: parseInt(paginacion.b),
+      where:{nombre: {$like: ("%"+paginacion.nombre+"%")}}
+
+    })//fin de findAll
     .then(apiPeticiones => res.json({
       error: false,
       data: apiPeticiones
@@ -29,9 +41,11 @@ router.get('/:id', function (req, res, next) {
           error: true,
           data: [],
           error: error
+          //log_file.write(error)
       }));
   }//fin del if
 });//fin del get
+
 
 
 /* POST todo. */
