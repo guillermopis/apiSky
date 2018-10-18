@@ -25,7 +25,7 @@ router.get('/:id', function (req, res, next) {
     }));
   }else{
       model.cliente.findAll({ where: {
-          id: todo_id
+          id: paginacion.id
       }})
       .then(apiPeticiones => res.json({
         error: false,
@@ -43,11 +43,11 @@ router.get('/:id', function (req, res, next) {
 
 /* POST todo. */
 router.post('/', function(req, res, next) {
+  //console.dir(req);
   var {
         nombre,direccion,correo, dirfact, nit,telefono,estado,tipopago,tiposervicio,fecha,
         tipomora,saldo,anticipo
         } = req.body;
-
      model.cliente.create({
              nombre: nombre,
              direccion_fiscal: direccion,
