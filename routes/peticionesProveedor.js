@@ -1,3 +1,5 @@
+//"password": "maruntes",
+    //"host": "basecrud.cmib4k2ppmwh.ca-central-1.rds.amazonaws.com",
 var express = require('express');
 var router = express.Router();
 var model = require('../models/index');
@@ -5,9 +7,16 @@ var model = require('../models/index');
 
 /* mostramos los datos que tenga el proveedor */
 router.get('/:id', function (req, res, next) {
-  const todo_id = req.params.id;
-  if(todo_id == 'null'){
-    model.proveedore.findAll({})
+  console.log(req);
+  const todo_id = req.params.id;//capturo lo que viene en id
+  var paginacion = JSON.parse(todo_id);//convierto a json lo que viene en id
+  console.log("valor de texto= "+paginacion.texto);
+  if(paginacion.id == 'null'){
+    model.proveedore.findAll({ //offset: 0 , limit:5
+      offset: parseInt(paginacion.a), limit: parseInt(paginacion.b),
+      where:{nombre: {$like: ("%"+paginacion.nombre+"%")}}
+
+    })//fin de findAll
     .then(apiPeticiones => res.json({
       error: false,
       data: apiPeticiones
@@ -32,6 +41,7 @@ router.get('/:id', function (req, res, next) {
       }));
   }//fin del if
 });//fin del get
+
 
 
 /* POST todo. */
