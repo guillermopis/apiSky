@@ -11,6 +11,9 @@ var model = require('../models/index');
 
 /* mostramos los datos que tenga el proveedor */
 router.get('/:id', function (req, res, next) {
+
+  //console.log(req);
+
   const todo_id = req.params.id;//capturo lo que viene en id
   var paginacion = JSON.parse(todo_id);//convierto a json lo que viene en id
   console.log("valor de texto= "+paginacion.texto);
