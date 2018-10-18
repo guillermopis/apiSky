@@ -30,8 +30,16 @@ var tiposervicio = require('./routes/peticionesTipoServicio');
 var tipomora = require('./routes/peticionesTipoMora');
 var vehiculos = require('./routes/peticionesVehiculos');
 
+
 var gps = require('./routes/peticionesgps');
 var historialVehiculo = require('./routes/peticioneshistorialVehiculo');
+
+var gps = require('./routes/peticionesgps');
+var historialVehiculo = require('./routes/peticioneshistorialVehiculo');
+
+//var pruebas = requerie('.test/servidor')
+
+
 var app = express();
 
 // view engine setup
