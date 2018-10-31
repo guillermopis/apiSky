@@ -15,12 +15,33 @@
     "http-errors": "~1.6.2",
     "https": "^1.0.0",
     "jade": "~1.11.0",
+    "log": "^1.4.0",
     "mocha": "^5.2.0",
     "moment": "^2.22.2",
     "morgan": "~1.9.0",
     "nodemon": "^1.18.3",
     "sequelize": "^4.38.0",
     "sequelize-cli": "^4.1.1",
-    "tedious": "^2.6.4"
-  }
+    "tedious": "^2.6.4",
+    "continuation-local-storage": "^3.2.0",
+    "mkdirp": "^0.5.1",
+    "node-uuid": "^1.4.8",
+    "winston": "^2.4.0"
+  },
+  "description": "API con sql server y node+express",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guillermopis/apiSky.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/guillermopis/apiSky/issues"
+  },
+  "homepage": "https://github.com/guillermopis/apiSky#readme"
 }
