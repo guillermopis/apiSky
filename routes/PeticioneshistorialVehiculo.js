@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var model = require('../models/index');
 var Sequelize = require('sequelize');
+var Moment = require('Moment');
 //var sequelize = new Sequelize();
 
 const sequelize = new Sequelize('SkyrangerDB', 'sa', 'maruntes', {
@@ -70,13 +71,17 @@ router.get('/:id', function (req, res, next) {
 
 
 router.post('/',function(req,res,next){
-var{fecha,id_gps_entrada,id_gps_salida,idVehiculo,id_tecnico,comentario,id_gps}=req.body;
-var query = 'exec sp_asignarGPS :fecha, :id_gps_entrada, :id_gps_salida, :idVehiculo, :id_tecnico, :comentario, :id_gps'; 
+var fecha=Moment().format('L');
+var hora=Moment().format('LTS');
+var datetime = (fecha +' '+hora);
+var{id_gps_entrada,id_gps_salida,idVehiculo,id_tecnico,comentario,id_gps}=req.body;
+console.log("valor de gps_Salida: "+id_gps_salida);
+var query = 'exec sp_asignarGPS :fecha, :id_gps_entrada, :id_gps_salida, :idVehiculo, :id_tecnico, :comentario'; 
 console.log("estoy antes de sequelize");
 sequelize.query(query,
   {replacements: {
-    fecha: fecha, id_gps_entrada:id_gps_entrada, id_gps_salida: id_gps_salida,
-    idVehiculo: idVehiculo, id_tecnico: id_tecnico, comentario: comentario, id_gps: id_gps,
+    fecha:datetime,id_gps_entrada:id_gps_entrada, id_gps_salida: id_gps_salida,
+    idVehiculo: idVehiculo, id_tecnico: id_tecnico, comentario: comentario, 
   }, 
   type: sequelize.QueryTypes.SELECT }
 ).then(apiPeticiones => res.json({ 
