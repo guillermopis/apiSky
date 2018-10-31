@@ -5,7 +5,7 @@ var model = require('../models/index');
 
 /* mostramos los datos que tenga el proveedor */
 router.get('/:id', function (req, res, next) {
-  console.log(req);
+  //console.log(req);
   const todo_id = req.params.id;//capturo lo que viene en id
   var paginacion = JSON.parse(todo_id);//convierto a json lo que viene en id
   console.log("valor de texto= "+paginacion.texto);
@@ -46,12 +46,12 @@ router.get('/:id', function (req, res, next) {
 router.post('/', function(req, res, next) {
   var {
          id_marca,
-         compania_telefonica,
-         plan_de_datos,
-         fecha_vencimiento_plan,
-         fecha_inicio_plan,
-         precio_del_plan,
-         numero_telefono,
+         companiatelef,
+         plandatos,
+         fechaVplan,
+         fechaIplan,
+         precioplan,
+         numerotelef,
          iccid,
          apn,
          id_lote,
@@ -61,12 +61,12 @@ router.post('/', function(req, res, next) {
      model.sim.create({
             
             id_marca: id_marca,
-            compania_telefonica:compania_telefonica,
-            plan_de_datos:plan_de_datos,
-            fecha_vencimiento_plan: fecha_vencimiento_plan,
-            fecha_inicio_plan: fecha_inicio_plan,
-            precio_del_plan: precio_del_plan,
-            numero_telefono: numero_telefono,
+            compania_telefonica:companiatelef,
+            plan_de_datos:plandatos,
+            fecha_vencimiento_plan: fechaVplan,
+            fecha_inicio_plan: fechaIplan,
+            precio_del_plan: precioplan,
+            numero_telefono: numerotelef,
             iccid: iccid,
             apn: apn,
             id_lote: id_lote,
@@ -86,20 +86,11 @@ router.post('/', function(req, res, next) {
 //metodo actualizar
 router.put('/:id', function (req, res, next) {
     const todos = req.params.id;
-    const {id_marca,compania_telefonica,plan_de_datos,fecha_vencimiento_plan,
-        fecha_inicio_plan,precio_del_plan,numero_telefono,iccid,apn,id_lote,estado} = req.body;
+    const { 
+         estado
+       } = req.body;
     model.sim.update({
-             id_marca: id_marca,
-            compania_telefonica:compania_telefonica,
-            plan_de_datos:plan_de_datos,
-            fecha_vencimiento_plan: fecha_vencimiento_plan,
-            fecha_inicio_plan: fecha_inicio_plan,
-            precio_del_plan: precio_del_plan,
-            numero_telefono: numero_telefono,
-            iccid: iccid,
-            apn: apn,
-            id_lote: id_lote,
-            estado:estado
+            estado: estado
         }, {
             where: {
                 id: todos

@@ -1,22 +1,18 @@
+'use strict'
 //"password": "maruntes",
     //"host": "basecrud.cmib4k2ppmwh.ca-central-1.rds.amazonaws.com",
 var express = require('express');
 var router = express.Router();
 var model = require('../models/index');
-//loggerHTTP = require('morgan');
-//var fs = require('fs'); var util = require('util');
-//app.use(loggerHTTP({stream: log_file}));
-//app.use(loggerHTTP('dev'));
-//espacio para las peticionesDeApi
+//var domain = require('../domain/domain');
+//var logger = require('../logger');
 
 /* mostramos los datos que tenga el proveedor */
 router.get('/:id', function (req, res, next) {
-
-  //console.log(req);
-
+    //console.log(req);
   const todo_id = req.params.id;//capturo lo que viene en id
   var paginacion = JSON.parse(todo_id);//convierto a json lo que viene en id
-  console.log("valor de texto= "+paginacion.texto);
+  //console.log("valor de texto= "+paginacion.texto);
   if(paginacion.id == 'null'){
     model.proveedore.findAll({ //offset: 0 , limit:5
       offset: parseInt(paginacion.a), limit: parseInt(paginacion.b),
@@ -76,7 +72,7 @@ router.post('/', function(req, res, next) {
             correo_empresa: correo_empresa,
             estado: estado,
             contacto: contacto,
-            fecha_relacion: fecha_relacion ,
+            fecha_relacion: fecha_relacion,
             correo_contacto: correo_contacto
          })
          .then(todo => res.status(201).json({
@@ -118,7 +114,9 @@ router.put('/:id', function (req, res, next) {
         }))
         .catch(error => res.json({
             error: true,
-            error: error
+            error: error,
+            message: 'no se pudo actualizar'
         }));
 });
+
 module.exports = router;
