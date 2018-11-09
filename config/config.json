@@ -3,7 +3,7 @@
     "username": "sa",
     "password": "conexion1",
     "database": "SkyrangerDB",
-    "host": "192.168.43.220",
+    "host":"127.0.0.1",
     "dialect": "mssql"
   },
 
