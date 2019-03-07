@@ -12,7 +12,6 @@ router.get('/:id', function (req, res, next) {
   if(paginacion.id == 'null'){
     model.sim.findAll({ //offset: 0 , limit:5
       offset: parseInt(paginacion.a), limit: parseInt(paginacion.b),
-      //vamos a filtrar por el nombre de la compania
       where:{compania_telefonica: {$like: ("%"+paginacion.compania_telefonica+"%")}}
 
     })//fin de findAll
@@ -75,7 +74,7 @@ router.post('/', function(req, res, next) {
          .then(todo => res.status(201).json({
              error: false,
              data: todo,
-             message: 'Registro ingresado en la tabla sim'
+             mensaje: 'Registro ingresado en la tabla sim'
          }))
          .catch(error => res.json({
              error: true,
@@ -83,6 +82,7 @@ router.post('/', function(req, res, next) {
              error: error
          }));
 });
+/*
 //metodo actualizar
 router.put('/:id', function (req, res, next) {
     const todos = req.params.id;
@@ -105,4 +105,5 @@ router.put('/:id', function (req, res, next) {
             error: error
         }));
 });
+*/
 module.exports = router;
